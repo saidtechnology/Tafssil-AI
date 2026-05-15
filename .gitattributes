@@ -1,0 +1,11 @@
+* text=auto
+*.py text diff=python
+*.tsx text diff=typescript
+*.ts text diff=typescript
+*.json text diff=json
+*.md text
+*.svg text
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary

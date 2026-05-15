@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "Tafssil AI",
+    "slug": "tafssil-ai",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "tafssil",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#1a1a2e"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tafssil.ai",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Tafssil AI needs camera access to capture garment photos."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#1a1a2e"
+      },
+      "package": "com.tafssil.ai",
+      "permissions": ["android.permission.CAMERA"]
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Tafssil AI needs camera access to capture garment photos."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Tafssil AI needs photo library access."
+        }
+      ]
+    ]
+  }
+}
