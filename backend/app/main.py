@@ -10,8 +10,11 @@ from app.config import settings
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Path(settings.upload_dir).mkdir(parents=True, exist_ok=True)
-    from app.database import init_db
-    init_db()
+    try:
+        from app.database import init_db
+        init_db()
+    except Exception as e:
+        print(f"Database init skipped: {e}")
     yield
 
 
