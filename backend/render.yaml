@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: tafssil-api
+    runtime: python
+    region: frankfurt
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.12
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tafssil-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: tafssil-redis
+          property: connectionString
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: UPLOAD_DIR
+        value: /data/uploads
+      - key: LOG_LEVEL
+        value: INFO
+      - key: DEBUG
+        value: false
+
+databases:
+  - name: tafssil-db
+    plan: free
+    region: frankfurt
+
+redis:
+  - name: tafssil-redis
+    plan: free
+    region: frankfurt

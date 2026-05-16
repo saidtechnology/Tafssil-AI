@@ -4,9 +4,9 @@ from pathlib import Path
 
 class Settings(BaseSettings):
     database_url: str = "sqlite:///./tafssil.db"
-    redis_url: str = "redis://localhost:6379/0"
-    celery_broker_url: str = "redis://localhost:6379/0"
-    ollama_host: str = "http://localhost:11434"
+    redis_url: str = ""
+    supabase_url: str = ""
+    supabase_service_key: str = ""
     upload_dir: str = "./static/uploads"
     log_level: str = "INFO"
     debug: bool = True
