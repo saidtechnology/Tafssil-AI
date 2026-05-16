@@ -2,9 +2,9 @@ import axios from 'axios';
 import { Platform } from 'react-native';
 
 const BASE_URL = Platform.select({
-  android: 'http://10.0.2.2:8000',
-  ios: 'http://localhost:8000',
-  default: 'http://localhost:8000',
+  android: 'https://tafssil-api.onrender.com',
+  ios: 'https://tafssil-api.onrender.com',
+  default: 'https://tafssil-api.onrender.com',
 });
 
 export const api = axios.create({
