@@ -10,6 +10,8 @@ from app.config import settings
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Path(settings.upload_dir).mkdir(parents=True, exist_ok=True)
+    from app.database import init_db
+    init_db()
     yield
 
 
@@ -27,9 +29,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-if Path(settings.upload_dir).exists():
-    app.mount("/static", StaticFiles(directory=settings.upload_dir), name="static")
 
 from app.routers import projects, measurements, patterns, reports
 
