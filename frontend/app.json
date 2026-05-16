@@ -3,6 +3,8 @@
     "name": "Tafssil AI",
     "slug": "tafssil-ai",
     "version": "0.1.0",
+  "description": "AI-powered tailoring application — تفصيل بالذكاء الاصطناعي",
+  "githubUrl": "https://github.com/saidtechnology/Tafssil-AI",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "tafssil",

@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
 from pathlib import Path
 
+from datetime import datetime
 from app.config import settings
 
 
@@ -47,5 +48,8 @@ async def health():
         "status": "ok",
         "app": "Tafssil AI",
         "version": "0.1.0",
-        "upload_dir": str(Path(settings.upload_dir).exists()),
+        "docs": "/docs",
+        "github": "https://github.com/saidtechnology/Tafssil-AI",
+        "timestamp": datetime.utcnow().isoformat(),
+        "python": __import__("sys").version,
     }

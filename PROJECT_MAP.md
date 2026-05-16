@@ -1,37 +1,46 @@
-# PROJECT MAP — Tafssil AI
+# PROJECT MAP — Tafssil AI v0.1.0
 
 ## TECH_STACK
 - **Frontend**: React Native 0.85 + Expo 55 + expo-router + react-native-svg
-- **Backend**: FastAPI 0.136 + Uvicorn 0.47 + SQLAlchemy 2.0 + Celery 5.6
-- **AI**: MediaPipe 0.10 + OpenCV 4.13 + Ultralytics 8.4 + Ollama (DeepSeek)
+- **Backend**: FastAPI 0.136 + Uvicorn 0.47 + SQLAlchemy 2.0
+- **AI**: MediaPipe 0.10 + OpenCV 4.13
 - **PDF**: WeasyPrint 68
-- **DB**: SQLite (dev) → PostgreSQL (prod)
-- **Cache**: Redis 7 (Celery broker)
+- **DB**: PostgreSQL (Supabase)
+- **Storage**: Supabase Storage
+- **Hosting**: Render (Free Tier)
 
 ## SYSTEM_FLOW
 ```
-[Home] → [Capture/Upload] → [Size/AI Measure] → [Pattern Type] → [Preview]
+[Home] → [Capture/Upload] → [Measurements] → [Pattern Type] → [SVG Preview]
 → [AI Notes] → [PDF Report]
 ```
 
 ## ARCHITECTURE
 ```
-Monorepo:
-  /backend      — FastAPI Python server
-  /frontend     — React Native Expo app
-  API: REST over HTTP (JSON)
-  Async: Celery + Redis for heavy AI processing
-  Storage: Local filesystem for images, SQLite for metadata
+Frontend:  React Native (Expo) → REST API
+Backend:   FastAPI (Python 3.13)
+Database:  PostgreSQL (Supabase)
+Storage:   Supabase Storage (garment-images bucket)
+Hosting:   Render (autodeploy from GitHub main)
+```
+
+## LIVE LINKS
+- **API**: https://tafssil-api.onrender.com
+- **Health**: https://tafssil-api.onrender.com/health
+- **GitHub**: https://github.com/saidtechnology/Tafssil-AI
+
+## FILES (66 total)
+```
+backend/        — 28 files (FastAPI server)
+frontend/       — 25 files (React Native app)
+root/           —  5 files (README, LICENSE, render.yaml, etc.)
 ```
 
 ## ORPHANS & PENDING
-- [ ] Install MediaPipe 0.10.35
-- [ ] Install OpenCV 4.13.0.92
-- [ ] Install Ultralytics 8.4.51
-- [ ] Upgrade FastAPI from 0.118 → 0.136.1
-- [ ] Install Ollama + pull DeepSeek model
-- [ ] Define all 10 simple pattern algorithms in pattern_engine/
-- [ ] Implement multi-image merge in image_processor.py
-- [ ] Create Expo development build
-- [ ] Test full end-to-end flow
+- [ ] Implement real MediaPipe → measurements pipeline
+- [ ] Build actual pattern SVG generation algorithms
+- [ ] Add Ollama/DeepSeek integration for AI notes
+- [ ] Create test suite (pytest + jest)
 - [ ] Set up GitHub Actions CI/CD
+- [ ] Build and publish APK via EAS Build
+- [ ] Implement user authentication
