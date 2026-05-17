@@ -60,7 +60,8 @@ npx eas build --platform android --profile preview
 
 | الإصدار | رابط التحميل |
 |---------|-------------|
-| **v0.2.0** (أحدث) | [**expo.dev/artifacts/eas/jhRnSUCBy8gGBXsT2xvp6r.apk**](https://expo.dev/artifacts/eas/jhRnSUCBy8gGBXsT2xvp6r.apk) |
+| **v0.3.0** (أحدث) | [**expo.dev/artifacts/eas/qYVC9YNzkKk9qF1VU3i3QG.apk**](https://expo.dev/artifacts/eas/qYVC9YNzkKk9qF1VU3i3QG.apk) |
+| v0.2.0 | [expo.dev/artifacts/eas/jhRnSUCBy8gGBXsT2xvp6r.apk](https://expo.dev/artifacts/eas/jhRnSUCBy8gGBXsT2xvp6r.apk) |
 | v0.1.0 | [expo.dev/artifacts/eas/hVzsycVcb9S197cgbQXuC8.apk](https://expo.dev/artifacts/eas/hVzsycVcb9S197cgbQXuC8.apk) |
 
 > ⚠️ قد تحتاج لتفعيل "تثبيت من مصادر غير معروفة" على جهاز Android.
