@@ -58,10 +58,12 @@ cd frontend
 npx eas build --platform android --profile preview
 ```
 
-Download the latest APK from:
-[**expo.dev/artifacts/eas/hVzsycVcb9S197cgbQXuC8.apk**](https://expo.dev/artifacts/eas/hVzsycVcb9S197cgbQXuC8.apk)
+| الإصدار | رابط التحميل |
+|---------|-------------|
+| **v0.2.0** (أحدث) | [**expo.dev/artifacts/eas/jhRnSUCBy8gGBXsT2xvp6r.apk**](https://expo.dev/artifacts/eas/jhRnSUCBy8gGBXsT2xvp6r.apk) |
+| v0.1.0 | [expo.dev/artifacts/eas/hVzsycVcb9S197cgbQXuC8.apk](https://expo.dev/artifacts/eas/hVzsycVcb9S197cgbQXuC8.apk) |
 
-> ⚠️ You may need to enable "Install from unknown sources" on your Android device.
+> ⚠️ قد تحتاج لتفعيل "تثبيت من مصادر غير معروفة" على جهاز Android.
 
 ## 🏗️ Architecture
 
