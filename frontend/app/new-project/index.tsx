@@ -13,7 +13,7 @@ export default function NewProjectScreen() {
         onPress={() => router.push('/new-project/camera')}
       >
         <Ionicons name="camera-outline" size={40} color="#e94560" />
-        <Text style={styles.optionText">تصوير مباشر</Text>
+        <Text style={styles.optionText}>تصوير مباشر</Text>
         <Text style={styles.optionDesc}>التقط صور متعددة للموديل</Text>
       </TouchableOpacity>
 

@@ -49,6 +49,20 @@
 
 ---
 
+## 📲 Build & Install
+
+### Android APK (via EAS Build)
+
+```bash
+cd frontend
+npx eas build --platform android --profile preview
+```
+
+Download the latest APK from:
+[**expo.dev/artifacts/eas/hVzsycVcb9S197cgbQXuC8.apk**](https://expo.dev/artifacts/eas/hVzsycVcb9S197cgbQXuC8.apk)
+
+> ⚠️ You may need to enable "Install from unknown sources" on your Android device.
+
 ## 🏗️ Architecture
 
 ```

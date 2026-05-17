@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useState } from 'react';
-import { router } from 'expo/router';
+import { router } from 'expo-router';
 
 const SIZES = ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'];
 

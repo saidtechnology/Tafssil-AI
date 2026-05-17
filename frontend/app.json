@@ -3,29 +3,39 @@
     "name": "Tafssil AI",
     "slug": "tafssil-ai",
     "version": "0.1.0",
-  "description": "AI-powered tailoring application — تفصيل بالذكاء الاصطناعي",
-  "githubUrl": "https://github.com/saidtechnology/Tafssil-AI",
+    "description": "AI-powered tailoring application — تفصيل بالذكاء الاصطناعي",
+    "githubUrl": "https://github.com/saidtechnology/Tafssil-AI",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "tafssil",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+    "userInterfaceStyle": "dark",
+
     "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
       "backgroundColor": "#1a1a2e"
     },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.tafssil.ai",
+      "buildNumber": "1",
       "infoPlist": {
-        "NSCameraUsageDescription": "Tafssil AI needs camera access to capture garment photos."
+        "NSCameraUsageDescription": "Tafssil AI needs camera access to capture garment photos.",
+        "NSPhotoLibraryUsageDescription": "Tafssil AI needs photo library access to upload garment images."
       }
     },
     "android": {
       "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1a1a2e"
       },
       "package": "com.tafssil.ai",
-      "permissions": ["android.permission.CAMERA"]
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "plugins": [
       "expo-router",
@@ -38,9 +48,17 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Tafssil AI needs photo library access."
+          "photosPermission": "Tafssil AI needs photo library access to upload garment images."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "apiUrl": "https://tafssil-api.onrender.com",
+      "router": {},
+      "eas": {
+        "projectId": "d7d21bc8-ec17-40c5-b352-6c6690891765"
+      }
+    },
+    "owner": "saidtechnology"
   }
 }
