@@ -30,8 +30,25 @@ export const uploadImages = async (projectId: number, images: string[]) => {
 export const saveMeasurements = (data: Record<string, number>) =>
   api.post('/api/measurements/manual', data);
 
-export const generatePattern = (data: { pattern_type: string; model: string; measurements: Record<string, number> }) =>
-  api.post('/api/patterns/simple', data);
+export const fetchStandardSizes = async () => {
+  const res = await api.get('/api/measurements/sizes');
+  return res.data;
+};
+
+export const getStandardSize = (size: string) =>
+  api.post('/api/measurements/standard', { size, gender: 'female' });
+
+export const fetchModels = async () => {
+  const res = await api.get('/api/patterns/models');
+  return res.data.models;
+};
+
+export const generatePattern = (data: {
+  pattern_type: string;
+  model: string;
+  measurements: Record<string, number>;
+  parameters?: Record<string, string>;
+}) => api.post('/api/patterns/simple', data);
 
 export const getReport = (projectId: number) =>
   api.get(`/api/reports/${projectId}`);

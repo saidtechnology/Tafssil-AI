@@ -47,7 +47,15 @@ export default function StandardSizesScreen() {
           ))}
           <TouchableOpacity
             style={styles.confirmBtn}
-            onPress={() => router.push('/patterns')}
+            onPress={() => {
+              const vals = SIZE_DATA[selected];
+              if (vals) {
+                router.push({
+                  pathname: '/patterns',
+                  params: { measurements: JSON.stringify(vals) },
+                });
+              }
+            }}
           >
             <Text style={styles.confirmText}>تأكيد واختيار الباترون</Text>
           </TouchableOpacity>

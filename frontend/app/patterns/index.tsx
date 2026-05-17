@@ -1,20 +1,25 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function PatternTypeScreen() {
+  const { measurements } = useLocalSearchParams<{ measurements?: string }>();
+
+  const goToSimple = () => {
+    const params: Record<string, string> = {};
+    if (measurements) params.measurements = measurements;
+    router.push({ pathname: '/patterns/simple', params });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>اختر نوع الباترون</Text>
 
-      <TouchableOpacity
-        style={styles.card}
-        onPress={() => router.push('/patterns/simple')}
-      >
+      <TouchableOpacity style={styles.card} onPress={goToSimple}>
         <Ionicons name="layers-outline" size={36} color="#e94560" />
         <View style={styles.cardContent}>
           <Text style={styles.cardTitle}>باترون بسيط</Text>
-          <Text style={styles.cardDesc}>10 موديلات جاهزة — A-line, قميص, بنطلون...</Text>
+          <Text style={styles.cardDesc}>قميص، عباية، قفطان، وتزيد...</Text>
         </View>
         <Ionicons name="chevron-forward" size={24} color="#555" />
       </TouchableOpacity>

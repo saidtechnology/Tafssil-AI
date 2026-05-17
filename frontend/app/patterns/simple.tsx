@@ -1,38 +1,86 @@
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import { useState } from 'react';
-import { router } from 'expo-router';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
+import { useState, useEffect } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { fetchModels, generatePattern } from '../../services/api';
 
-const MODELS = [
-  { id: 'a-line', name: 'A-Line Dress', icon: 'woman-outline' },
-  { id: 'bodycon', name: 'Bodycon Dress', icon: 'woman-outline' },
-  { id: 'shirt', name: 'Classic Shirt', icon: 'shirt-outline' },
-  { id: 'trousers', name: 'Trousers', icon: 'footsteps-outline' },
-  { id: 'skirt', name: 'Skirt', icon: 'cut-outline' },
-  { id: 'blouse', name: 'Blouse', icon: 'shirt-outline' },
-  { id: 'blazer', name: 'Blazer', icon: 'shirt-outline' },
-  { id: 'abaya', name: 'Abaya', icon: 'accessibility-outline' },
-  { id: 'kaftan', name: 'Kaftan', icon: 'accessibility-outline' },
-  { id: 'wedding', name: 'Basic Wedding Dress', icon: 'sparkles-outline' },
-];
+interface PatternModel {
+  id: string;
+  name: string;
+  name_en: string;
+  icon: string;
+  required_measurements: string[];
+}
 
 export default function SimplePatternsScreen() {
+  const { measurements: measurementsJson } = useLocalSearchParams<{ measurements?: string }>();
+  const [models, setModels] = useState<PatternModel[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [generating, setGenerating] = useState(false);
+
+  useEffect(() => {
+    loadModels();
+  }, []);
+
+  const loadModels = async () => {
+    try {
+      const data = await fetchModels();
+      setModels(data);
+    } catch {
+      setModels([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGenerate = async () => {
+    if (!selected) return;
+    setGenerating(true);
+    try {
+      const measurements = measurementsJson ? JSON.parse(measurementsJson) : {};
+      const res = await generatePattern({
+        pattern_type: 'simple',
+        model: selected,
+        measurements,
+      });
+      router.push({
+        pathname: '/preview',
+        params: { svg: res.data.svg, model: selected, measurements: measurementsJson || '' },
+      });
+    } catch (e: any) {
+      router.push({
+        pathname: '/preview',
+        params: { error: 'فشل توليد الباترون: ' + (e.message || '') },
+      });
+    } finally {
+      setGenerating(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <View style={styles.centered}>
+        <ActivityIndicator size="large" color="#e94560" />
+        <Text style={styles.loadingText}>جاري تحميل الموديلات...</Text>
+      </View>
+    );
+  }
 
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>اختر الموديل</Text>
-      <Text style={styles.subtitle}>10 موديلات جاهزة بتقنيات احترافية</Text>
+      <Text style={styles.subtitle}>اختر نوع اللباس الذي تريد تفصيله</Text>
 
       <View style={styles.grid}>
-        {MODELS.map((model) => (
+        {models.map((model: PatternModel, i: number) => (
           <TouchableOpacity
             key={model.id}
             style={[styles.modelCard, selected === model.id && styles.modelSelected]}
             onPress={() => setSelected(model.id)}
           >
             <Ionicons
-              name={model.icon as any}
+              name={(model.icon || 'cut-outline') as any}
               size={28}
               color={selected === model.id ? '#fff' : '#e94560'}
             />
@@ -46,9 +94,14 @@ export default function SimplePatternsScreen() {
       {selected && (
         <TouchableOpacity
           style={styles.generateBtn}
-          onPress={() => router.push('/preview')}
+          onPress={handleGenerate}
+          disabled={generating}
         >
-          <Text style={styles.generateText}>توليد الباترون</Text>
+          {generating ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text style={styles.generateText}>توليد الباترون</Text>
+          )}
         </TouchableOpacity>
       )}
     </ScrollView>
@@ -57,6 +110,8 @@ export default function SimplePatternsScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#1a1a2e', padding: 20 },
+  centered: { flex: 1, backgroundColor: '#1a1a2e', justifyContent: 'center', alignItems: 'center' },
+  loadingText: { color: '#888', marginTop: 12, fontSize: 14 },
   title: { fontSize: 22, fontWeight: 'bold', color: '#fff', marginTop: 20, marginBottom: 4 },
   subtitle: { fontSize: 14, color: '#888', marginBottom: 24 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },

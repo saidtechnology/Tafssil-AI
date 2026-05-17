@@ -2,7 +2,7 @@
   "expo": {
     "name": "Tafssil AI",
     "slug": "tafssil-ai",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "AI-powered tailoring application — تفصيل بالذكاء الاصطناعي",
     "githubUrl": "https://github.com/saidtechnology/Tafssil-AI",
     "orientation": "portrait",
@@ -18,7 +18,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.tafssil.ai",
-      "buildNumber": "2",
+      "buildNumber": "3",
       "infoPlist": {
         "NSCameraUsageDescription": "Tafssil AI needs camera access to capture garment photos.",
         "NSPhotoLibraryUsageDescription": "Tafssil AI needs photo library access to upload garment images."
@@ -30,7 +30,7 @@
         "backgroundColor": "#1a1a2e"
       },
       "package": "com.tafssil.ai",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.READ_EXTERNAL_STORAGE",

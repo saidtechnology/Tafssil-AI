@@ -92,7 +92,16 @@ export default function CustomMeasurementsScreen() {
 
       <TouchableOpacity
         style={styles.nextBtn}
-        onPress={() => router.push('/patterns')}
+        onPress={() => {
+          const vals: Record<string, number> = {};
+          measurements.forEach(m => {
+            if (m.value) vals[m.key] = parseFloat(m.value);
+          });
+          router.push({
+            pathname: '/patterns',
+            params: { measurements: JSON.stringify(vals) },
+          });
+        }}
       >
         <Text style={styles.nextText}>التالي ← اختيار الباترون</Text>
       </TouchableOpacity>
