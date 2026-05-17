@@ -47,7 +47,7 @@ async def health():
     return {
         "status": "ok",
         "app": "Tafssil AI",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "docs": "/docs",
         "github": "https://github.com/saidtechnology/Tafssil-AI",
         "timestamp": datetime.utcnow().isoformat(),
